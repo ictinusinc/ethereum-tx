@@ -344,12 +344,12 @@ class Transaction implements ArrayAccess
         ]);
         $r = $signature->r;
         $s = $signature->s;
-        $v = $signature->recoveryParam + 35;
+        $v = $signature->recoveryParam + 27;
 
         $chainId = $this->offsetGet('chainId');
 
         if ($chainId && $chainId > 0) {
-            $v += (int) $chainId * 2;
+            $v += ((int) $chainId * 2)+8;
         }
 
         $this->offsetSet('r', '0x' . $r->toString(16));
